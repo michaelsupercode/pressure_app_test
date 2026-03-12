@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "systolic": 125,
+    "diastolic": 84,
+    "heartRate": 69,
+    "notes": null,
+    "timestamp": "2026-03-12T14:42:21.475Z"
+  },
+  {
+    "id": 2,
+    "systolic": 116,
+    "diastolic": 79,
+    "heartRate": 82,
+    "notes": null,
+    "timestamp": "2026-03-12T14:56:48.434Z"
+  },
+  {
+    "id": 3,
+    "systolic": 123,
+    "diastolic": 79,
+    "heartRate": 72,
+    "notes": null,
+    "timestamp": "2026-03-12T14:57:52.738Z"
+  },
+  {
+    "id": 4,
+    "systolic": 121,
+    "diastolic": 78,
+    "heartRate": 71,
+    "notes": null,
+    "timestamp": "2026-03-12T14:59:25.047Z"
+  }
+]
