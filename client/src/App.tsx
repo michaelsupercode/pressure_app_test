@@ -1,15 +1,13 @@
-import { Switch, Route } from "wouter";
+﻿import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Dashboard from "./pages/Dashboard";
-import { disableReactDevTools } from “@fvilers/disable-react-devtools”;
+import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 
-if (process.env.NODE_ENV === 'production') disableReactDevTools ()
-
-  disableReactDevTools
+if (import.meta.env.MODE === 'production') disableReactDevTools()
 
 function Router() {
   return (
