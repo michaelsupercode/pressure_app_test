@@ -5,6 +5,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Dashboard from "./pages/Dashboard";
+import { disableReactDevTools } from “@fvilers/disable-react-devtools”;
+
+if (process.env.NODE_ENV === 'production') disableReactDevTools ()
+
+  disableReactDevTools
 
 function Router() {
   return (
