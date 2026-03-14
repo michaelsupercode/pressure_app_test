@@ -2,14 +2,13 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { api, buildUrl } from "@shared/routes";
 import { type Reading, type InsertReading } from "@shared/schema";
 import { useToast } from "@/hooks/use-toast";
+import { BASE_URL } from "@/lib/queryClient";
 
 // Helper to handle Zod validation logging safely
 function parseWithLogging<T>(schema: any, data: unknown, label: string): T {
   const result = schema.safeParse(data);
   if (!result.success) {
     console.error(`[Zod] ${label} validation failed:`, result.error.format());
-    // Fallback to return data as is, to avoid crashing UI entirely if API drifts slightly
-    // but in strict environments, we'd throw.
     return data as T; 
   }
   return result.data;
@@ -19,11 +18,10 @@ export function useReadings() {
   return useQuery({
     queryKey: [api.readings.list.path],
     queryFn: async () => {
-      const res = await fetch(api.readings.list.path, { credentials: "include" });
+      const res = await fetch(`${BASE_URL}${api.readings.list.path}`, { credentials: "include" });
       if (!res.ok) throw new Error("Failed to fetch readings");
       const data = await res.json();
       
-      // Data might contain stringified timestamps, parse them securely
       return data.map((item: any) => ({
         ...item,
         timestamp: new Date(item.timestamp)
@@ -38,7 +36,7 @@ export function useCreateReading() {
 
   return useMutation({
     mutationFn: async (data: InsertReading) => {
-      const res = await fetch(api.readings.create.path, {
+      const res = await fetch(`${BASE_URL}${api.readings.create.path}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -75,7 +73,7 @@ export function useDeleteReading() {
   return useMutation({
     mutationFn: async (id: number) => {
       const url = buildUrl(api.readings.delete.path, { id });
-      const res = await fetch(url, {
+      const res = await fetch(`${BASE_URL}${url}`, {
         method: "DELETE",
         credentials: "include",
       });
