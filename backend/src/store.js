@@ -5,11 +5,26 @@ import { fileURLToPath } from "node:url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const dataDirectory = path.resolve(__dirname, "../data");
-const dataFile = path.resolve(dataDirectory, "readings.json");
+const dataDirectory = process.env.DATA_DIR
+  ? path.resolve(process.env.DATA_DIR)
+  : path.resolve(__dirname, "../data");
+
+const dataFile = process.env.DATA_FILE
+  ? path.resolve(process.env.DATA_FILE)
+  : path.resolve(dataDirectory, "readings.json");
+
+const dataFileDirectory = path.dirname(dataFile);
+
+export function getStoreInfo() {
+  return {
+    dataFile,
+    dataDirectory,
+    source: process.env.DATA_FILE ? "DATA_FILE" : process.env.DATA_DIR ? "DATA_DIR" : "default"
+  };
+}
 
 async function ensureStoreExists() {
-  await fs.mkdir(dataDirectory, { recursive: true });
+  await fs.mkdir(dataFileDirectory, { recursive: true });
 
   try {
     await fs.access(dataFile);

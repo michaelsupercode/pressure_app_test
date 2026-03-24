@@ -3,7 +3,7 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 
-import { getAllReadings, createReading, deleteReadingById } from "./store.js";
+import { getAllReadings, createReading, deleteReadingById, getStoreInfo } from "./store.js";
 import { validateCreateReading } from "./validation.js";
 
 const app = express();
@@ -26,7 +26,7 @@ app.get("/", (_, res) => {
 
 
 app.get("/api/health", (_req, res) => {
-  res.json({ ok: true, service: "pressure-backend" });
+  res.json({ ok: true, service: "pressure-backend", storage: getStoreInfo() });
 });
 
 app.get("/api/readings", async (_req, res, next) => {

@@ -4,6 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
+const devApiProxyTarget = process.env.VITE_DEV_API_PROXY_TARGET || "http://localhost:4000";
 
 export default defineConfig(({ command }) => ({
   plugins: [react()],
@@ -18,7 +19,7 @@ export default defineConfig(({ command }) => ({
       port: 5173,
       proxy: {
         "/api": {
-          target: "https://pressure-backend.onrender.com",
+          target: devApiProxyTarget,
           changeOrigin: true
         }
       }

@@ -7,7 +7,17 @@ Simple Express backend for blood pressure readings.
 - `GET /api/readings` list all readings (newest first)
 - `POST /api/readings` create a reading
 - `DELETE /api/readings/:id` delete a reading
+- `GET /api/health` includes active storage metadata for diagnostics
 - JSON file persistence in `backend/data/readings.json`
+
+## Persistence configuration
+
+The backend supports custom storage paths:
+
+- `DATA_DIR` directory that contains `readings.json`
+- `DATA_FILE` full path to the JSON file (takes precedence over `DATA_DIR`)
+
+For platforms with ephemeral filesystems (for example Render), set one of these to a mounted persistent disk path.
 
 ## Run
 

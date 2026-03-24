@@ -29,7 +29,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-background relative overflow-hidden selection:bg-primary/20">
+    <div className="min-h-screen bg-background relative overflow-x-hidden selection:bg-primary/20">
       {/* Decorative background blur elements */}
       <div className="absolute top-0 left-0 w-full h-[50vh] bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
       <div className="absolute -top-40 -right-40 w-96 h-96 bg-blue-400/10 rounded-full blur-[100px] pointer-events-none" />
