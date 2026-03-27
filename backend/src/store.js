@@ -4,14 +4,21 @@ import { fileURLToPath } from "node:url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const projectRoot = path.resolve(__dirname, "..");
 
-const dataDirectory = process.env.DATA_DIR
-  ? path.resolve(process.env.DATA_DIR)
-  : path.resolve(__dirname, "../data");
+function resolveFromProjectRoot(targetPath) {
+  if (!targetPath) {
+    return null;
+  }
 
-const dataFile = process.env.DATA_FILE
-  ? path.resolve(process.env.DATA_FILE)
-  : path.resolve(dataDirectory, "readings.json");
+  return path.isAbsolute(targetPath)
+    ? path.resolve(targetPath)
+    : path.resolve(projectRoot, targetPath);
+}
+
+const dataDirectory = resolveFromProjectRoot(process.env.DATA_DIR) ?? path.resolve(projectRoot, "data");
+
+const dataFile = resolveFromProjectRoot(process.env.DATA_FILE) ?? path.resolve(dataDirectory, "readings.json");
 
 const dataFileDirectory = path.dirname(dataFile);
 
