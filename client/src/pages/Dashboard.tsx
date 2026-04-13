@@ -34,7 +34,7 @@ export default function Dashboard() {
       <div className="absolute top-0 left-0 w-full h-[50vh] bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
       <div className="absolute -top-40 -right-40 w-96 h-96 bg-blue-400/10 rounded-full blur-[100px] pointer-events-none" />
       
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 relative z-10">
+      <main className="max-w-[760px] mx-auto px-4 sm:px-6 py-8 sm:py-12 relative z-10">
         
         {/* Header Section */}
         <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">

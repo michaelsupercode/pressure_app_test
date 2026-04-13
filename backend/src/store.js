@@ -62,9 +62,11 @@ export async function getAllReadings() {
   return rows.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
 }
 
+const MAX_ENTRIES = 50;
+
 export async function createReading(input) {
   const rows = await readRaw();
-  const nextId = rows.length === 0 ? 1 : Math.max(...rows.map((row) => row.id || 0)) + 1;
+  const nextId = rows.length === 0 ? 1 : rows.reduce((max, row) => Math.max(max, row.id || 0), 0) + 1;
 
   const row = {
     id: nextId,
@@ -76,7 +78,12 @@ export async function createReading(input) {
   };
 
   rows.push(row);
-  await writeRaw(rows);
+
+  const trimmed = rows
+    .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+    .slice(0, MAX_ENTRIES);
+
+  await writeRaw(trimmed);
   return row;
 }
 

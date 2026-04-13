@@ -35,19 +35,19 @@ export function BPList({ readings }: BPListProps) {
         const status = getBPStatus(reading.systolic, reading.diastolic);
         
         return (
-          <div 
-            key={reading.id} 
-            className="group relative bg-card p-5 rounded-3xl border border-border/50 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
+          <div
+            key={reading.id}
+            className="group relative bg-card p-3 rounded-2xl border border-border/50 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
           >
             {/* Status accent line on the left */}
             <div className={`absolute left-0 top-0 bottom-0 w-1.5 ${status.colorClass.split(' ')[0]}`} />
-            
-            <div className="flex flex-col sm:flex-row gap-4 sm:items-center justify-between ml-2">
-              <div className="space-y-1">
+
+            <div className="flex flex-col sm:flex-row gap-2 sm:items-center justify-between ml-2">
+              <div className="space-y-0.5">
                 <div className="flex items-center gap-3">
-                  <h4 className="text-3xl font-display font-bold text-foreground">
+                  <h4 className="text-2xl font-display font-bold text-foreground">
                     {reading.systolic}
-                    <span className="text-muted-foreground font-normal text-xl mx-1">/</span>
+                    <span className="text-muted-foreground font-normal text-lg mx-1">/</span>
                     {reading.diastolic}
                   </h4>
                   <div className={`px-3 py-1 rounded-full text-xs font-bold border uppercase tracking-wider ${status.colorClass} ${status.textColor} ${status.borderColor}`}>
@@ -70,7 +70,7 @@ export function BPList({ readings }: BPListProps) {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto mt-2 sm:mt-0 pt-4 sm:pt-0 border-t sm:border-0 border-border/50">
+              <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto mt-1 sm:mt-0 pt-2 sm:pt-0 border-t sm:border-0 border-border/50">
                 {reading.notes ? (
                   <p className="text-sm italic text-muted-foreground bg-muted/50 px-3 py-2 rounded-xl flex-1 sm:max-w-[200px] truncate">
                     "{reading.notes}"
